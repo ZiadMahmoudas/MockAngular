@@ -69,7 +69,6 @@ ng s -o
 
 - If `stock === 0` → Status shows "Out of Stock"
 - If `stock > 0` → Status shows "In Stock"
-- Cart "Add" button disabled for out-of-stock products
 
 ---
 
