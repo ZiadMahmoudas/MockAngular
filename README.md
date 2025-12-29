@@ -41,34 +41,11 @@ Examples:
 - Email: `user@test.com` | Password: `password`
 - Email: `test@example.com` | Password: `anything`
 
----
-
-## Project Structure
-
-```
-src/app/
-├── core/
-│   ├── guards/
-│   │   └── auth.guard.ts          # Route protection
-│   ├── services/
-│   │   ├── auth.service.ts        # Mock authentication
-│   │   ├── token.service.ts       # Token management
-│   │   ├── product.service.ts     # Mock products CRUD
-│   │   └── cart.service.ts        # Cart management
-│   └── pages/
-│       ├── auth/
-│       │   └── login/
-│       │       └── login.component.ts
-│       └── products/
-│           └── products.component.ts
-├── app.routes.ts                   # Application routes
-├── app.config.ts                   # App configuration
-└── app.component.ts                # Root component
-```
-
----
 
 ## How It Works
+npm install
+then 
+ng s -o
 
 ### 1. Mock Authentication
 - **AuthService** accepts any credentials
@@ -81,12 +58,6 @@ src/app/
 - Initial products stored in memory
 - CRUD operations update the observable
 - Data resets on page refresh (expected behavior)
-
-### 3. Cart System
-- **CartService** manages cart state
-- Persists cart in localStorage
-- Survives page refresh
-- Calculates totals automatically
 
 ### 4. Route Guards
 - **authGuard**: Protects `/products`
@@ -120,15 +91,6 @@ private productsSubject = new BehaviorSubject<Product[]>(initialProducts);
 
 // Operations modify the subject
 addProduct() → Update subject → UI updates automatically
-```
-
-### Cart Persistence
-```typescript
-// Cart saved to localStorage on every change
-addToCart() → Update BehaviorSubject → Save to localStorage
-```
-
----
 
 ## Notes
 
