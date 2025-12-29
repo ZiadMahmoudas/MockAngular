@@ -1,0 +1,67 @@
+<div class="fullScreen">
+  <div class="signup-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input
+          [class.error]="email.invalid && email.touched"
+          [class.success]="email.valid && email.touched"
+          formControlName="email"
+          type="email"
+          id="email"
+          name="Email"
+          placeholder="Please Enter Your Email"
+          required
+        />
+      </div>
+      @if(email.invalid && email.touched){
+        @if(email.errors?.['required']){
+          <small class="error-message">Email is required</small>
+        }
+        @if(email.errors?.['email']){
+          <small class="error-message">Please enter a valid email address</small>
+        }
+      }
+      
+      <div class="input-group password-toggle">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          [type]="isPasswordVisible() ? 'text' : 'password'"
+          id="password"
+          name="password"
+          placeholder="Please Enter Your Password"
+          [class.error]="(password.invalid && password.touched) || invalidLogin"
+          [class.success]="password.valid && password.touched && !invalidLogin"
+          required
+        />
+        <i
+          [class.fa-eye]="isPasswordVisible()"
+          [class.fa-eye-slash]="!isPasswordVisible()"
+          (click)="togglePasswordVisibility()"
+          class="fa-duotone fa-light toggle-password"
+        ></i>
+      </div>
+      
+      @if(password.invalid && password.touched){
+        @if(password.errors?.['required']){
+          <small class="error-message">Password is required</small>
+        }
+        @if(password.errors?.['minlength']){
+          <small class="error-message">Password must be at least 3 characters</small>
+        }
+      }
+      
+      @if(invalidLogin){
+        <small class="error-message">Invalid email or password</small>
+      }
+      
+      <a routerLink="/forgetPassword" class="forget">Forget Password?</a>
+      
+      <button type="submit" [disabled]="loginForm.invalid || loading">
+        {{ loading ? 'Loading...' : 'Login' }}
+      </button>
+    </form>
+  </div>
+</div>

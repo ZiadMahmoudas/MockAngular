@@ -1,0 +1,61 @@
+<nav
+  class="navbar"
+  [class.menu-open]="isMenuOpen"
+  [class.navbar-scrolled]="isScrolled"
+  [class.navbar-hidden]="isNavbarHidden"
+>
+  <div class="top-bar"></div>
+
+  <div class="navbar-content">
+    <div class="navbar-logo">
+      <a routerLink="/Home">
+        <img
+          loading="eager"
+          fetchpriority="high"
+          src="images/logo.webp"
+          alt="Brand Logo"
+        />
+      </a>
+    </div>
+
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen"
+    >
+      <i
+        class="fas"
+        [ngClass]="{ 'fa-bars': !isMenuOpen, 'fa-times': isMenuOpen }"
+      ></i>
+    </button>
+
+    <div class="navbar-links" [ngClass]="{ 'is-active': isMenuOpen }">
+      <ul>
+        <li>
+          <a routerLink="/Home" routerLinkActive="active-link-class">Home</a>
+        </li>
+        <li>
+          <a routerLink="/About" routerLinkActive="active-link-class">About Us</a>
+        </li>
+        <li>
+          <a href="#" routerLinkActive="active-link-class">Services</a>
+        </li>
+        <li>
+          <a routerLink="/Work" routerLinkActive="active-link-class">How We Work</a>
+        </li>
+        
+        <!-- For Mobile -->
+        <div class="navbar-cta1" *ngIf="isLoggedIn">
+           <span class="user-name">Welcome, {{ userName }}</span>
+           <button (click)="logout()" class="cta-button logout-btn">Logout</button>
+        </div>
+      </ul>
+    </div>
+
+    <!-- For Desktop -->
+    <div class="navbar-cta" *ngIf="isLoggedIn">
+      <span class="user-name">Welcome, {{ userName }}</span>
+      <button (click)="logout()" class="cta-button logout-btn">Logout</button>
+    </div>
+  </div>
+</nav>

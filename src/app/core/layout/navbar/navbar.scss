@@ -1,0 +1,293 @@
+$font-bold: "Bold", sans-serif;
+$font-regular: "regular", sans-serif;
+$font-medium: "medium", sans-serif;
+$font-thin: "thin", sans-serif;
+
+$primary-color: #00ffff;
+$secondary-color: #3bc5c5;
+$dark-bg: #1a1a1a;
+$darker-bg: #151515;
+$text-color: #DDDDDD;
+$light-text: #fff;
+$dark-background: #111111;
+$light-green: #76B900;
+$secondary-btn-bg: #333d4e;
+$white-bg: #ffffff;
+$top-bar-color: #0088ff;
+$text-dark: #1a1a1a;
+$nav-height: 70px;
+$mobile-menu-height: calc(70vh - $nav-height);
+
+.navbar {
+    background-color: $dark-bg;
+    color: $text-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.4s ease-in-out;
+    direction: ltr;
+
+    &.navbar-hidden {
+        transform: translateY(-100%);
+    }
+
+    &.navbar-scrolled {
+        background-color: rgba($dark-bg, 0.95);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.top-bar {
+    height: 5px;
+    background-color: $top-bar-color;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $nav-height;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    direction: ltr;
+}
+
+.navbar-links {
+    ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        
+        li {
+            .active-link-class {
+                color: #00d9ff;
+                border-bottom: 2px solid #00d9ff;
+            }
+        }
+    }
+    
+    a {
+        text-decoration: none;
+        color: $text-color;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+        font-family: "regular";
+        font-size: 1.125rem;
+        
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}
+
+.navbar-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $text-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    
+    img {
+        width: 150px;
+        
+        @media(min-width:992px) {
+            width: 200px;
+        }
+    }
+}
+
+.navbar-cta,
+.navbar-cta1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    .user-name {
+        color: $primary-color;
+        font-family: "medium";
+        font-size: 1rem;
+        padding: 8px 16px;
+        background: rgba($primary-color, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba($primary-color, 0.3);
+        white-space: nowrap;
+    }
+}
+
+.cta-button {
+    background-color: #00ffff;
+    color: #1a1a1a; 
+    border: 1px solid #00ffff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    font-family: "Bold";
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: rgba($primary-color, 0.1);
+        color: $primary-color;
+        box-shadow: 0 0 10px rgba($primary-color, 0.5);
+    }
+    
+    &.logout-btn {
+        background-color: transparent;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        
+        &:hover {
+            background-color: $primary-color;
+            color: $dark-bg;
+        }
+    }
+}
+
+// Hamburger - يظهر فقط تحت 992px
+.hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: $text-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+// Mobile Menu - يظهر تحت 992px
+.navbar-links {
+    position: absolute;
+    top: $nav-height + 5px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background-color: $dark-bg;
+    transition: height 0.4s ease-in-out;
+
+    &.is-active {
+        height: $mobile-menu-height;
+        padding-bottom: 20px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    li {
+        text-align: center;
+        margin: 1rem 0;
+        
+        a {
+            display: block;
+            font-size: 1.1rem;
+            font-family: "regular";
+        }
+    }
+}
+
+// Desktop CTA - مخفي تحت 992px
+.navbar-cta {
+    display: none;
+}
+
+// Mobile CTA - يظهر في الموبايل menu
+.navbar-cta1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    
+    .user-name {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+    
+    .cta-button {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Small devices (tablets, 576px and up) */
+@media (min-width: 576px) {
+    .navbar-content {
+        padding: 0 1.5rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 1120px) {
+    // إخفاء الـ hamburger
+    .hamburger {
+        display: none;
+    }
+
+    // تحويل الـ navbar links لـ desktop mode
+    .navbar-links {
+        position: static;
+        height: auto;
+        overflow: visible;
+        width: auto;
+        
+        ul {
+            flex-direction: row;
+            align-items: center;
+            height: 30px;
+        }
+        
+        li {
+            margin: 0;
+            text-align: left;
+        }
+    }
+
+    // إظهار الـ Desktop CTA
+    .navbar-cta {
+        display: flex;
+        
+        .user-name {
+            font-size: 1.05rem;
+            padding: 10px 18px;
+        }
+        
+        .cta-button {
+            padding: 0.6rem 1.8rem;
+            font-size: 1.05rem;
+        }
+    }
+    
+    // إخفاء الـ Mobile CTA
+    .navbar-cta1 {
+        display: none;
+    }
+
+    .navbar-content {
+        padding: 0 2rem;
+    }
+}
+
+/* Extra large devices (1200px and up) */
+@media (min-width: 1200px) {
+    .navbar-content {
+        max-width: 1400px;
+    }
+}

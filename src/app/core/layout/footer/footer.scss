@@ -1,0 +1,248 @@
+$card-border-radius: 6px;
+$pill-radius: 9999px;
+$font-bold: "Bold", sans-serif;
+$font-regular: "regular", sans-serif;
+$font-medium: "medium", sans-serif;
+$font-thin: "thin", sans-serif;
+
+$primary-color: #00ffff;
+$secondary-color: #3bc5c5;
+$dark-bg: #1a1a1a;
+$darker-bg: #151515;
+$text-color: #DDDDDD;
+$light-text: #fff;
+$dark-background: #111111;
+$light-green: #76B900;
+$secondary-btn-bg: #333d4e;
+$white-bg: #ffffff;
+$top-bar-color: #0088ff;
+$text-dark: #1a1a1a;
+
+footer {
+    width: 100%;
+    background: linear-gradient(180deg, #000000 0%, #0d0d0d 100%);
+    border-top: 1px solid #1a1a1a;
+    padding: 60px 0 0;
+    position: relative;
+    overflow: hidden;
+    direction: ltr;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d9ff, transparent);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    align-items: baseline;
+    gap: 22px;
+    margin-bottom: 60px;
+    direction: ltr;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-family: "medium";
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.footer-column ul li a {
+    color: #888;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "regular";
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-column ul li a:hover {
+    color: #00d9ff;
+    transform: translateX(5px);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    
+    img {
+        width: 180px;
+    }
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #00d9ff, #0066ff);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.footer-description {
+    color: #fff;
+    font-size: 1.125rem;
+    font-family: "regular";
+    line-height: 1.8;
+    width: 100%;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #222;
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, #00d9ff, #0066ff);
+    color: white;
+    transform: translateY(-3px);
+    border-color: #00d9ff;
+}
+
+.footer-bottom {
+    position: relative;
+}
+
+.footer-brand {
+    text-align: center;
+    position: relative;
+}
+
+.brand-name {
+    font-size: 120px;
+    position: relative;
+    height: 110px;
+    width: 100%;
+    
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 992px) {
+    .brand-name {
+        height: 119px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        text-align: left;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 380px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.plate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-medium;
+    font-size: 1rem;
+    color: $text-color;
+    position: relative;
+    overflow: hidden;
+    justify-content: flex-start;
+    transition: all 0.3s ease-in-out;
+    
+    &:hover {
+        color: #00ffff;
+    }
+    
+    &::before {
+        content: '🏢';
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+}

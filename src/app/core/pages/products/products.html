@@ -1,0 +1,77 @@
+ <div class="products-page">
+
+      <!-- Main Content -->
+      <div class="container">
+        <!-- Add Product Form -->
+        <div class="add-product-section">
+          <h3>Add New Product</h3>
+          <form [formGroup]="productForm" (ngSubmit)="addProduct()" class="product-form">
+            <div class="form-row">
+              <input 
+                type="text" 
+                formControlName="name" 
+                placeholder="Product Name"
+              />
+              <input 
+                type="number" 
+                formControlName="price" 
+                placeholder="Price"
+              />
+              <input 
+                type="number" 
+                formControlName="stock" 
+                placeholder="Stock"
+              />
+              <button type="submit" [disabled]="productForm.invalid" class="btn-add">
+                Add Product
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Products Table -->
+        <div class="products-section">
+          <h3>Products List</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{ product.id }}</td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.price | currency:'EGP':'symbol':'1.0-0' }}</td>
+                  <td>{{ product.stock }}</td>
+                  <td>
+                    <span [class]="'status-badge ' + (product.status === 'In Stock' ? 'in-stock' : 'out-stock')">
+                      {{ product.status }}
+                    </span>
+                  </td>
+                  <td>
+                    <button 
+                      class="btn-action btn-cart-add" 
+                    >
+                      Add to Cart
+                    </button>
+                    <button 
+                      class="btn-action btn-delete" 
+                      (click)="deleteProduct(product.id)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>

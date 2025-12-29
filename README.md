@@ -1,59 +1,160 @@
-# MockAngular
+# Angular Products Dashboard - Mock API
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+Simple Angular app demonstrating authentication, routing, CRUD operations, and a shopping cart using **mock services only** (no real backend).
 
-## Development server
+---
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
+✅ **Mock Authentication**
+- Login with any email/password
+- Token stored in localStorage
+- Auto-redirect after login
+
+✅ **Products Management**
+- View products list (Name, Price, Stock, Status)
+- Add new products
+- Delete products
+- Stock-based status (In Stock / Out of Stock)
+
+✅ **Protected Routes**
+- `/products` protected by AuthGuard
+- Auto-redirect to login if not authenticated
+
+---
+
+## Tech Stack
+
+- Angular 21
+- TypeScript
+- Standalone Components
+- RxJS
+- Mock Services (in-memory data)
+
+
+## Test Credentials
+
+**Any email and password will work!**
+
+Examples:
+- Email: `admin@test.com` | Password: `123456`
+- Email: `user@test.com` | Password: `password`
+- Email: `test@example.com` | Password: `anything`
+
+---
+
+## Project Structure
+
+```
+src/app/
+├── core/
+│   ├── guards/
+│   │   └── auth.guard.ts          # Route protection
+│   ├── services/
+│   │   ├── auth.service.ts        # Mock authentication
+│   │   ├── token.service.ts       # Token management
+│   │   ├── product.service.ts     # Mock products CRUD
+│   │   └── cart.service.ts        # Cart management
+│   └── pages/
+│       ├── auth/
+│       │   └── login/
+│       │       └── login.component.ts
+│       └── products/
+│           └── products.component.ts
+├── app.routes.ts                   # Application routes
+├── app.config.ts                   # App configuration
+└── app.component.ts                # Root component
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## How It Works
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Mock Authentication
+- **AuthService** accepts any credentials
+- Generates a fake JWT-like token
+- Stores token + user info in localStorage
+- No HTTP calls made
 
-```bash
-ng generate component component-name
+### 2. Mock Products API
+- **ProductService** uses BehaviorSubject
+- Initial products stored in memory
+- CRUD operations update the observable
+- Data resets on page refresh (expected behavior)
+
+### 3. Cart System
+- **CartService** manages cart state
+- Persists cart in localStorage
+- Survives page refresh
+- Calculates totals automatically
+
+### 4. Route Guards
+- **authGuard**: Protects `/products`
+- **notReturnLoginGuard**: Prevents logged-in users from accessing `/login`
+
+---
+
+## Business Rules
+
+- If `stock === 0` → Status shows "Out of Stock"
+- If `stock > 0` → Status shows "In Stock"
+- Cart "Add" button disabled for out-of-stock products
+
+---
+
+## Key Implementation Details
+
+### Mock Authentication Flow
+```typescript
+// Any credentials work
+login({ email: 'test@test.com', password: '123' })
+  → Generate fake token
+  → Save to localStorage
+  → Redirect to /products
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Mock Products Storage
+```typescript
+// Products stored in BehaviorSubject
+private productsSubject = new BehaviorSubject<Product[]>(initialProducts);
 
-```bash
-ng generate --help
+// Operations modify the subject
+addProduct() → Update subject → UI updates automatically
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
+### Cart Persistence
+```typescript
+// Cart saved to localStorage on every change
+addToCart() → Update BehaviorSubject → Save to localStorage
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Notes
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- ✅ No real backend required
+- ✅ Data resets on page refresh (normal for mock services as possible to put in local Storage) 
+- ✅ Cart persists across refreshes
+- ✅ Token persists across refreshes
+- ❌ No form validation errors shown inline (kept simple)
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## Optional Enhancements (Not Implemented)
 
-For end-to-end (e2e) testing, run:
+- Edit product functionality
+- Search/filter products
+- Toast notifications
+- Loading spinners
+- Form validation messages
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Evaluation Checklist
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- ✅ Components & Services properly separated
+- ✅ No business logic in components
+- ✅ Guards working correctly
+- ✅ Observables used with RxJS
+- ✅ Clean, readable code
+- ✅ Mock API (no hardcoded data in components)
+- ✅ Proper routing structure
