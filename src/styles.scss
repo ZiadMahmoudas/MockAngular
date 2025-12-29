@@ -15,3 +15,86 @@ $secondary-btn-bg: #333d4e;
 $white-bg: #ffffff;
 $top-bar-color: #0088ff;
 $text-dark: #1a1a1a;
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+        scrollbar-color: $primary-color #021258;
+    scrollbar-width: thin;
+}
+input {
+    border: 0;
+    outline: none;
+}
+html {
+    font-size: 14px;
+    overflow-x:hidden;
+}
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 0 !important;
+}
+ul {
+    padding-left: 0 !important;
+}
+a,button{
+    text-decoration: none;
+    box-shadow: none;
+    outline: 0;
+      cursor: pointer;
+    border: 0;
+    background-color: transparent;
+}
+li,ul{
+    list-style: none;
+}
+body{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    // height: 1000vh;
+}
+@font-face {
+    font-family: "Bold";
+    src: url(../public/fonts/PingAR+LT-Bold.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "regular";
+    src: url(../public/fonts/PingAR+LT-Regular.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "medium";
+    src: url(../public/fonts/PingAR+LT-ExtraLight.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "light";
+    src: url(../public/fonts/PingAR+LT-Light.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "thin";
+    src: url(../public/fonts/PingAR+LT-Thin.woff2) format("woff2");
+    font-style: normal;
+    font-display: swap;
+}
+
+@media (min-width: 576px) {
+    html {
+        font-size: 16px;
+    }
+}
