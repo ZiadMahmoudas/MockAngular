@@ -1,6 +1,6 @@
 # Angular Products Dashboard - Mock API
 
-Simple Angular app demonstrating authentication, routing, CRUD operations, and a shopping cart using **mock services only** (no real backend).
+Simple Angular app demonstrating authentication, routing, CRUD operations, using **mock services only** (no real backend).
 
 ---
 
@@ -96,7 +96,6 @@ addProduct() → Update subject → UI updates automatically
 
 - ✅ No real backend required
 - ✅ Data resets on page refresh (normal for mock services as possible to put in local Storage) 
-- ✅ Cart persists across refreshes
 - ✅ Token persists across refreshes
 - ❌ No form validation errors shown inline (kept simple)
 
